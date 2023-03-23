@@ -19,7 +19,7 @@ func solution(_ numbers:[Int], _ target:Int) -> Int {
             return
         }
 
-        guard index < numbers.count - 1 else { return }
+        guard let index < numbers.count - 1 else { return }
 
         dfs(index: index + 1, sum: sum + numbers[index + 1])
         dfs(index: index + 1, sum: sum - numbers[index + 1])
