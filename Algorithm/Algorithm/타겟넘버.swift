@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  타겟넘버.swift
 //  Algorithm
 //
 //  Created by MinJi Kang on 2023/03/23.
@@ -7,25 +7,27 @@
 
 import Foundation
 
-let input = Array(readLine()!)
-let numbers = input.map { Int(String($0))! }
+let numbers = [1,1,1,1,1]
+let target = 3
 
-let target = Int(readLine()!)!
+func solution(_ numbers:[Int], _ target:Int) -> Int {
+    var targetCount = 0
 
-var targetNum = 0
+    func dfs(index: Int, sum: Int) {
+        if index == (numbers.count - 1) && sum == target {
+            targetCount += 1
+            return
+        }
 
-func dfs(index: Int, sum: Int) {
-    if index == numbers.count && sum == target {
-        targetNum += 1
-        return
+        guard index < numbers.count - 1 else { return }
+
+        dfs(index: index + 1, sum: sum + numbers[index + 1])
+        dfs(index: index + 1, sum: sum - numbers[index + 1])
     }
 
-    guard index < numbers.count else { return }
+    dfs(index: -1, sum: 0)
 
-    dfs(index: index + 1, sum: sum + numbers[index + 1])
-    dfs(index: index + 1, sum: sum - numbers[index + 1])
+    return targetCount
 }
 
-dfs(index: -1, sum: 0)
-
-print(targetNum)
+print(solution(numbers, target))
