@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  단어변환.swift
 //  Algorithm
 //
 //  Created by 강민지 on 2023/03/28.
