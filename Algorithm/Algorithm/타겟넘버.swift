@@ -1,3 +1,10 @@
+//
+//  타겟넘버.swift
+//  Algorithm
+//
+//  Created by MinJi Kang on 2023/03/23.
+//
+
 import Foundation
 
 let numbers = [1,1,1,1,1]
