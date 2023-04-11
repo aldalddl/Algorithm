@@ -1,10 +1,3 @@
-//
-//  피로도.swift
-//  Algorithm
-//
-//  Created by 강민지 on 2023/04/10.
-//
-
 import Foundation
 
 func solution(_ k:Int, _ dungeons:[[Int]]) -> Int {
