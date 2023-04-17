@@ -1,43 +1,43 @@
 import Foundation
 
-let NM = readLine()!.split(separator: " ").map { Int(String($0))! }
-let N = NM[0]
-let M = NM[1]
+let NK = readLine()!.split(separator: " ").map { Int(String($0))! }
+let N = NK[0]
+let K = NK[1]
+var visited = [Bool](repeating: false, count: 100001)
+var sec = 0
 
-var graph = [[Int]]()
-for _ in 0..<N {
-    graph.append(Array(readLine()!).map { Int(String($0))! })
-}
+func bfs(x: Int) {
+    var queue = [(x, sec)]
+    visited[x] = true
 
-var moveX = [-1, 1, 0, 0]
-var moveY = [0, 0, 1, -1]
-
-func bfs(x: Int, y: Int) {
-    var queue = [(x, y)]
-    
     while !queue.isEmpty {
-        let point = queue.removeFirst()
-        let x = point.0
-        let y = point.1
+        let node = queue.removeFirst()
+        let currentX = node.0
+        let move = [currentX-1, currentX+1, currentX*2]
+        sec = node.1
         
-        for i in 0..<4 {
-            let newX = x + moveX[i]
-            let newY = y + moveY[i]
+        if N == K {
+            sec = 0
+            break
+        }
+
+        for i in 0..<3 {
+            let nextX = move[i]
             
-            if newX < 0 || newY < 0 || newX >= N || newY >= M {
+            if nextX < 0 || nextX > 100000 || visited[nextX] {
                 continue
             }
-            if graph[newX][newY] == 0 {
-                continue
-            }
-            if graph[newX][newY] == 1 {
-                queue.append((newX, newY))
-                graph[newX][newY] = graph[x][y] + 1 // 칸의 수 계산
+            if nextX == K {
+                sec += 1
+                queue = []
+                break
+            } else {
+                visited[nextX] = true
+                queue.append((nextX, sec + 1))
             }
         }
     }
-    print(graph[N-1][M-1])
+    print(sec)
 }
 
-print(bfs(x: 0, y: 0))
-
+print(bfs(x: N))
