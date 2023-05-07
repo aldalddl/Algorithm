@@ -10,7 +10,7 @@ for _ in 0..<N {
 var moveX = [-1, 1, 0, 0]
 var moveY = [0, 0, -1, 1]
 var complex = [Int]()
-var houseCnt = 0
+var houseCnt = 1
 
 func bfs(_ x:Int, _ y: Int) -> Int {
     var queue = [(x, y)]
@@ -32,8 +32,8 @@ func bfs(_ x:Int, _ y: Int) -> Int {
             }
             if graph[nextX][nextY] == 1 {
                 queue.append((nextX, nextY))
-                graph[nextX][nextY] = 0
                 houseCnt += 1
+                graph[nextX][nextY] = 0
             }
         }
     }
@@ -44,8 +44,9 @@ func bfs(_ x:Int, _ y: Int) -> Int {
 for i in 0..<N {
     for j in 0..<N {
         if graph[i][j] == 1 {
+            graph[i][j] = 0
             complex.append(bfs(i, j))
-            houseCnt = 0
+            houseCnt = 1
         }
     }
 }
@@ -54,3 +55,4 @@ print(complex.count)
 for num in complex.sorted(by: <) {
     print(num)
 }
+
