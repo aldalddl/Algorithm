@@ -16,3 +16,5 @@ func solution(_ n:Int) -> Int
         nextN += 1
     }
 }
+
+print(solution(78))
